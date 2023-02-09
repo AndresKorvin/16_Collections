@@ -6,16 +6,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 class GameTest {
-    Player player1 = new Player("Михаил Архистратиг", 90);
-    Player player2 = new Player("Гавриил", 80);
-    Player player3 = new Player("Рафаил", 60);
-    Player player4 = new Player( "Уриил", 60);
-    Player player5 = new Player( "Селафиил", 50);
-    Player player6 = new Player( "Иеремиил", 40);
-    Player [] setupPlayers = { player1, player6, player2, player5 };
+    Player player1 = new Player(1,"Михаил Архистратиг", 90);
+    Player player2 = new Player(2,"Гавриил", 80);
+    Player player3 = new Player(3,"Рафаил", 60);
+    Player player4 = new Player( 4,"Уриил", 60);
+    Player player5 = new Player( 5,"Селафиил", 50);
+    Player player6 = new Player( 6,"Иеремиил", 40);
+    Player [] expected = { player1, player6, player2, player5 };
     Game game = new Game();
 
 
@@ -27,12 +29,13 @@ class GameTest {
         game.register(player2);
         game.register(player5);
 
-        ArrayList<Player> actual = game.getRegisteredPlayers();
-        ArrayList<Player> expected = new ArrayList<>();
+        Player [] actual = game.getRegPlayers().values().toArray(new Player[0]);
 
-        Collections.addAll(expected, setupPlayers);
+        Arrays.sort(actual);
+        Arrays.sort(expected);
 
-        Assertions.assertArrayEquals (expected.toArray(), actual.toArray());
+        Assertions.assertArrayEquals(expected, actual);
+
     }
 
     @Test

@@ -1,23 +1,23 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
-    private ArrayList<Player> registeredPlayers = new ArrayList<>();
+    private HashMap<String, Player> regPlayers = new HashMap<>();
 
-    protected ArrayList<Player> getRegisteredPlayers() {
-        return registeredPlayers;
+    protected HashMap<String, Player> getRegPlayers() {
+        return regPlayers;
     }
 
     public void register (Player player) {
-        registeredPlayers.add(player);
+        regPlayers.put(player.getName(), player);
     }
 
     public Player findPlayerByName (String playerName) {
-        for (Player player :
-                registeredPlayers) {
-            if (player.getName().equals(playerName)) {
-                return player;
+        for (String key :
+                regPlayers.keySet()) {
+            if (key.equals(playerName)) {
+                return regPlayers.get(key);
             }
         }
         return null;
