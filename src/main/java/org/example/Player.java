@@ -5,6 +5,7 @@ public class Player {
     private int counterId = 0;
     private String name;
     private int strength;
+
     public Player(String name, int strength) {
         this.id = ++counterId;
         this.name = name;
